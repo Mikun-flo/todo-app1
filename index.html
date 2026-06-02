@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO APP</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="logo">TODO LIST</h1>
+            <button id="theme-toggle" class="theme-toggle">
+                <!-- <i class="fas fa-sun sun-icon"></i> -->
+                <img src="images/icon-sun.svg" alt="Sun Icon" />
+                <img src="images/icon-moon.svg" alt="Moon Icon" />
+            </button>
+        </header>
+
+        <!-- Add new todo item -->
+        <div class="todo-card">
+            <div class="add-todo">
+                <div class="circle"></div>
+                <input id="todo-input" type="text" placeholder="Create a new todo...">
+                <button id="add-btn" class="add-button">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Todo List -->
+        <div class="todo-card list-card">
+            <ul id="todo-list" class="todo-list"></ul>
+
+            <!-- Footer -->
+            <div class="todo-footer">
+                <span id="items-left">0 items left</span>
+
+                <div class="filters">
+                    <button data-filter="all" class="filter-btn active">All</button>
+                    <button data-filter="active" class="filter-btn">Active</button>
+                    <button data-filter="completed" class="filter-btn">Completed</button>
+                </div>
+
+                <button id="clear-completed" class="clear-btn">Clear Completed</button>
+            </div>
+        </div>
+
+        <p class="hint">Drag and drop to reorder</p>
+    </div>
+
+    <script src="app.jsx"></script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    /* Light Mode */
+    --bg-color: linear-gradient(180deg, #6B21A8, #1E3A8A);
+    --card-bg: rgba(15, 23, 42, 0.95);
+    --text-color: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --hover-bg: rgba(30, 41, 59, 0.8);
+    --accent: #6366f1;
+}
+
+.dark {
+    /* Dark Mode */
+    --card-bg: rgba(15, 23, 42, 0.98);
+    --text-color: #e2e8f0;
+    --text-muted: #94a3b8;
+    --border-color: #475569;
+    --hover-bg: rgba(51, 65, 85, 0.6);
+    --accent: #818cf8;
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg-color);
+    /* background-image: url('images/bg-desktop-dark.jpg'); */
+    /* background-image: url('https://picsum.photos/id/1015/1920/1080'); */
+    background-size: cover;
+    background-position: center;
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.container {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.logo {
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+.theme-toggle:hover {
+    background: rgba(255,255,255,0.1);
+    transform: scale(1.1);
+}
+
+/* Todo Card */
+.todo-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+/* Add Todo */
+.add-todo {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.circle {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #64748b;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+#add-btn {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    color: var(--accent);
+    cursor: pointer;
+    padding: 4px;
+}
+
+#add-btn:hover {
+    color: #a5b4fc;
+}
+
+/* Todo List */
+.todo-list {
+    min-height: 320px;
+    list-style: none;
+    divide-y: 1px solid var(--border-color);
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.1rem 1.5rem;
+    cursor: grab;
+    transition: all 0.2s;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.todo-item:hover {
+    background-color: var(--hover-bg);
+}
+
+.todo-item:last-child {
+    border-bottom: none;
+}
+
+.check-btn {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #64748b;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.check-btn.completed {
+    background: linear-gradient(to bottom right, #6366f1, #8b5cf6);
+    border: none;
+}
+
+.todo-text {
+    flex: 1;
+    font-size: 1.1rem;
+}
+
+.todo-text.completed {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+.delete-btn {
+    opacity: 0;
+    font-size: 1.4rem;
+    color: #64748b;
+    transition: all 0.2s;
+}
+
+.todo-item:hover .delete-btn {
+    opacity: 1;
+}
+
+.delete-btn:hover {
+    color: #ef4444;
+}
+
+/* Footer */
+.todo-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-color);
+}
+
+.filters {
+    display: flex;
+    gap: 1.25rem;
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    color: var(--accent);
+}
+
+/* Misc */
+.hint {
+    text-align: center;
+    color: #64748b;
+    margin-top: 2rem;
+    font-size: 0.95rem;
+}
+
+.dragover {
+    border-top: 3px solid var(--accent);
+}
+
