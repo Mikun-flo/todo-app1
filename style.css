@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+/* Light Mode */
 :root {
-    /* Light Mode */
     --bg-color: linear-gradient(180deg, #6B21A8, #1E3A8A);
     --card-bg: rgba(15, 23, 42, 0.95);
     --text-color: #f1f5f9;
@@ -11,8 +10,8 @@
     --accent: #6366f1;
 }
 
+ /* Dark Mode */
 .dark {
-    /* Dark Mode */
     --card-bg: rgba(15, 23, 42, 0.98);
     --text-color: #e2e8f0;
     --text-muted: #94a3b8;
@@ -124,7 +123,7 @@ body {
 .todo-list {
     min-height: 320px;
     list-style: none;
-    divide-y: 1px solid var(--border-color);
+    visibility: 1px solid var(--border-color);
 }
 
 .todo-item {

@@ -1,0 +1,8 @@
+{
+  "editor.formatOnSave": true,
+  "files.autoSave": "onWindowChange",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.wordWrap": "on",
+  "chat.agent.maxRequests": 100,
+  "workbench.colorTheme": "Dark+"
+}
