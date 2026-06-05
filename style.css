@@ -18,8 +18,8 @@ body {
 
 :root {
   --color: #3a7cfd;
-  --check-gradient: linear-gradient(135deg, #55ddff 0%, #c058f3 100%);
-  /* --transition-speed: 0.3s; */
+  --check-gradient: linear-gradient(#55ddff 0%, #c058f3 100%);
+  --transition-speed: 0.3s;
 }
 
 body.dark-theme {
@@ -32,6 +32,19 @@ body.dark-theme {
   --border-color: #393a4b;
   --shadow: rgba(194, 195, 214, 0.5) 0px 35px 50px -15px;
   --bg-image-desktop: url("./images/bg-desktop-dark.jpg");
+  --bg-image-mobile: url("./images/bg-desktop-dark.jpg");
+}
+
+.light-theme {
+  --body-bg: #fafafa;
+  --card-bg: #ffffff;
+  --text-main: #494c6b;
+  --text-hover: #393a4b;
+  --text-muted: #9495a5;
+  --text-completed: #d1d2da;
+  --border-color: #e3e4f1;
+  --shadow: rgba(194, 195, 214, 0.5) 0px 35px 50px -15px;
+  --bg-image-desktop: url("./images/bg-desktop-light.jpg");
   --bg-image-mobile: url("./images/bg-desktop-light.jpg");
 }
 
@@ -40,7 +53,7 @@ body {
   color: var(--text-main);
 }
 
-/* Background Header Img */
+/* Bckgrd Header Img */
 .header-background {
   position: absolute;
   top: 0;
@@ -71,6 +84,14 @@ body {
   margin-bottom: 40px;
 }
 
+.logo {
+  color: #000000; /* Change to white for dark mode in JavaScript later */
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 15px;
+  line-height: 1;
+}
+
 #theme-toggle {
   background: none;
   border: none;
@@ -87,7 +108,7 @@ body {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 /* Card Elements */
@@ -146,13 +167,13 @@ body {
   width: 24px;
   height: 24px;
   cursor: pointer;
-  /* z-index: 2; */
+  z-index: 2;
 }
 
 .checkout-circle {
   width: 24px;
   height: 24px;
-  border: 2px solid #64748b;
+  border: 1px solid #64748b;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -160,10 +181,10 @@ body {
   transition: border-color var(--transition-speed)
     backgroundvar(--transition-speed);
   position: relative;
-  /* z-index: 1;*/
+  z-index: 1;
 }
 
-/* Checkbox hover, Gradient border */
+/* Checkbox hover effect, Gradient colour border */
 .checkbox-container:hover .checkbox-circle {
   border-color: transparent;
   background:
@@ -223,4 +244,18 @@ body {
 }
 .todo-item.drag-over {
   border-top: 2px solid var(--primary-blue);
+}
+
+.todo-text {
+  flex: 1;
+  margin-left: 24px;
+  font-size: 18px;
+  color: var(--text-main);
+  transition: color var(--transition-speed);
+  word-break: break-all;
+  user-select: none;
+}
+.todo-item.completed .todo-text {
+  color: var(--text-completed);
+  text-decoration: line-through;
 }
