@@ -259,3 +259,29 @@ body {
   color: var(--text-completed);
   text-decoration: line-through;
 }
+
+/* Delete Button */
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.todo-item:hover .delete-btn {
+  opacity: 1;
+}
+
+.delete-btn svg path {
+  fill: var(--text-muted);
+  transition: fill var(--transition-speed);
+}
+.delete-btn:hover svg path {
+  fill: #db49ff; /* Purple highlight on hover for deleting */
+}
