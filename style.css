@@ -160,139 +160,67 @@ body {
   transition: border-color var(--transition-speed)
     backgroundvar(--transition-speed);
   position: relative;
-  z-index: 1;
+  /* z-index: 1;*/
 }
 
-#add-btn {
-  background: none;
-  border: none;
-  font-size: 1.6rem;
-  color: var(--accent);
-  cursor: pointer;
-  padding: 4px;
+/* Checkbox hover, Gradient border */
+.checkbox-container:hover .checkbox-circle {
+  border-color: transparent;
+  background:
+    linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+    var(--check-gradient) border-box;
+  border: 1px solid transparent;
 }
 
-#add-btn:hover {
-  color: #a5b4fc;
-}
-
-/* Todo List */
-.todo-list {
-  min-height: 320px;
-  list-style: none;
-  visibility: 1px solid var(--border-color);
-}
-
-.todo-item {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  padding: 1.1rem 1.5rem;
-  cursor: grab;
-  transition: all 0.2s;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.todo-item:hover {
-  background-color: var(--hover-bg);
-}
-
-.todo-item:last-child {
-  border-bottom: none;
-}
-
-.check-btn {
-  width: 24px;
-  height: 24px;
-  border: 2px solid #64748b;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  transition: all 0.2s;
-}
-
-.check-btn.completed {
-  background: linear-gradient(to bottom right, #6366f1, #8b5cf6);
+.todo-checkbox:checked + .checkbox-circle {
+  background: var(--check-gradient);
   border: none;
 }
 
-.todo-text {
-  flex: 1;
-  font-size: 1.1rem;
-}
-
-.todo-text.completed {
-  text-decoration: line-through;
-  color: var(--text-muted);
-}
-
-.delete-btn {
+.checkbox-circle svg {
   opacity: 0;
-  font-size: 1.4rem;
-  color: #64748b;
-  transition: all 0.2s;
+  transition: opacity 0.15s ease;
 }
-
-.todo-item:hover .delete-btn {
+.todo-checkbox:checked + .checkbox-circle svg {
   opacity: 1;
 }
 
-.delete-btn:hover {
-  color: #ef4444;
+/* Todo Card (List Wrapper/Line) */
+.todo-card {
+  background-color: var(--card-bg);
+  border-radius: 5px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin-bottom: 24px;
+  transition:
+    background-color var(--transition-speed),
+    box-shadow var(--transition-speed);
 }
-
-/* Footer */
-.todo-footer {
+.todo-list {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.5rem;
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  border-top: 1px solid var(--border-color);
+  flex-direction: column;
 }
 
-.filters {
-  display: flex;
-  gap: 1.25rem;
+/* Todo Items */
+.todo-item {
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 0; /* Align perfectly inside the card */
+  cursor: grab;
+  position: relative;
+  transition:
+    background-color var(--transition-speed),
+    border-color var(--transition-speed);
+  animation: fadeIn 0.3s ease-out;
+}
+.todo-item:active {
+  cursor: grabbing;
 }
 
-.filter-btn {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  font-weight: 500;
-  transition: color 0.2s;
+.todo-item.dragging {
+  opacity: 0.4;
+  border: 2px dashed var(--primary-blue);
+  background-color: rgba(58, 124, 253, 0.05);
 }
-
-.filter-btn.active,
-.filter-btn:hover {
-  color: var(--accent);
-}
-
-/* Misc */
-.hint {
-  text-align: center;
-  color: #64748b;
-  margin-top: 2rem;
-  font-size: 0.95rem;
-}
-
-.dragover {
-  border-top: 3px solid var(--accent);
-}
-
-@media (max-width: 600px) {
-  .header {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .logo {
-    letter-spacing: 0.2em;
-    font-size: 2.4rem;
-  }
+.todo-item.drag-over {
+  border-top: 2px solid var(--primary-blue);
 }
