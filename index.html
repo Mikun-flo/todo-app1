@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 
-<body>
+<body class="light">
     <div class="container">
-        <!-- Header -->
+        <!-- Header; Add light mode first in JavaScript, then dark mode -->
+        <!-- Light Mode -->
         <header class="header">
-            <h1 class="logo">TODO LIST</h1>
+            <h1 class="logo">TODO</h1>
             <button id="theme-toggle" class="theme-toggle">
                 <!-- <i class="fas fa-sun sun-icon"></i> -->
                 <img src="images/icon-sun.svg" alt="Sun Icon" />
@@ -21,7 +22,16 @@
             </button>
         </header>
 
-        <!-- Add new todo item -->
+        <!-- <div class="container">
+            Header; Dark mode -->
+        <!-- <header class="header">
+                <button id="theme-toggle" class="theme-toggle">
+                    <img src="images/icon-sun.svg" alt="Sun Icon">
+                    <img src="images/icon-moon.svg" alt="Moon Icon" />
+                </button>
+            </header> -->
+
+        <!-- Add new todo item container -->
         <div class="todo-card">
             <div class="add-todo">
                 <div class="circle"></div>
@@ -54,7 +64,7 @@
 
     </div>
 
-    <script src="app.jsx"></script>
+    <script src="app.js"></script>
 </body>
 
 </html>
