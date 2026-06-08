@@ -4,66 +4,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TODO APP</title>
+    <title>Todo App</title>
+    <link rel="icon" <!--
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📝</text></svg>">
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 
-<body class="light-theme">
-    <div class="container">
-        <!-- Header; Add light mode first in JavaScript, then dark mode -->
-        <!-- Light Mode -->
-        <header class="header">
+<body class="dark-theme">
+    <div class="header-bg" id="header-bg"></div>
+
+    <main class="container">
+        <header class="app-header">
             <h1 class="logo">TODO</h1>
-            <button id="theme-toggle" class="theme-toggle">
-                <!-- <i class="fas fa-sun sun-icon"></i> -->
-                <img src="images/icon-sun.svg" alt="Sun Icon" />
-                <img src="images/icon-moon.svg" alt="Moon Icon" />
+            <button id="theme-toggle" aria-label="Toggle theme">
+                <!-- Sun Icon (shown in dark theme to switch to light) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" id="sun-icon">
+                    <path fill="#FFF" fill-rule="evenodd"
+                        d="M13 21a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1zm-5.657-2.343a1 1 0 0 1 0 1.414l-2.121 2.121a1 1 0 0 1-1.414-1.414l2.12-2.121a1 1 0 0 1 1.415 0zm12.728 0a1 1 0 0 1 1.414 0l2.121 2.121a1 1 0 0 1-1.414 1.414l-2.121-2.12a1 1 0 0 1 0-1.415zM13 8a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm12 4a1 1 0 1 1 0 2h-3a1 1 0 1 1 0-2h3zM4 12a1 1 0 1 1 0 2H1a1 1 0 1 1 0-2h3zm18.364-5.657a1 1 0 0 1 0 1.414l-2.12 2.121a1 1 0 0 1-1.415-1.414l2.121-2.121a1 1 0 0 1 1.414 0zM7.343 6.343a1 1 0 0 1 1.414 0l2.121 2.121a1 1 0 0 1-1.414 1.414l-2.121-2.12a1 1 0 0 1 0-1.415zM13 0a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0V1a1 1 0 0 1 1-1z" />
+                </svg>
+                <!-- Moon Icon (shown in light theme to switch to dark) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" id="moon-icon" class="hidden">
+                    <!-- <path fill="#FFF" fill-rule="evenodd"
+                        d="M13 0c.81 0 1.603.074 2.373.216a1 1 0 0 1 .593 1.632 9.005 9.005 0 0 0 12.162 12.162 1 1 0 0 1 1.63 1.627A12.992 12.992 0 0 1 13 26a13 13 0 1 1 0-26z" /> -->
+                </svg>
             </button>
         </header>
-
-        <!-- <div class="container">
-            Header; Dark mode -->
-        <!-- <header class="header">
-                <button id="theme-toggle" class="theme-toggle">
-                    <img src="images/icon-sun.svg" alt="Sun Icon">
-                    <img src="images/icon-moon.svg" alt="Moon Icon" />
-                </button>
-            </header> -->
-
-        <!-- Add new todo item container -->
-        <div class="todo-card">
-            <div class="add-todo">
-                <div class="circle"></div>
-                <input id="todo-input" type="text" placeholder="Create a new todo...">
-                <button id="add-btn" class="add-button">
-                    <i class="fas fa-plus"></i>
-                </button>
+        <section class="input-section">
+            <div class="checkbox-container">
+                <div class="checkbox-circle-static"></div>
             </div>
-        </div>
+            <input type="text" id="new-todo-input" placeholder="Create a new todo..." aria-label="Create a new todo">
+        </section>
+        <section class="todo-card">
+            <div id="todo-list" class="todo-list" role="list">
+                <!-- Dynamic todo items will be injected here -->
+            </div>
 
-        <!-- Todo List -->
-        <div class="todo-card list-card">
-            <ul id="todo-list" class="todo-list"></ul>
-
-            <!-- Footer -->
-            <div class="todo-footer">
+            <div class="list-footer">
                 <span id="items-left">0 items left</span>
-
-                <div class="filters">
-                    <button data-filter="all" class="filter-btn active">All</button>
-                    <button data-filter="active" class="filter-btn">Active</button>
-                    <button data-filter="completed" class="filter-btn">Completed</button>
+                <div class="filters desktop-only">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="active">Active</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
                 </div>
-
-                <button id="clear-completed" class="clear-btn">Clear Completed</button>
+                <button id="clear-completed" class="action-btn">Clear Completed</button>
             </div>
-        </div>
-
-        <p class="hint">Drag and drop to reorder list</p>
-
-    </div>
-
+        </section>
+        <!-- Mobile-only filters card -->
+        <section class="mobile-filters-card mobile-only">
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="active">Active</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+            </div>
+        </section>
+        <p class="drag-hint">Drag and drop to reorder list</p>
+    </main>
     <script src="app.js"></script>
 </body>
 
