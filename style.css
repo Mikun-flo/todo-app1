@@ -22,7 +22,7 @@ body {
   --transition-speed: 0.3s;
 }
 
-body.dark-theme {
+.dark-theme {
   background-color: #171823;
   --card-bg: #25273c;
   --text-main: #c8cae4;
@@ -76,7 +76,7 @@ body {
   padding: 70px 24px 40px;
 }
 
-/* Logo & Toggle */
+/* App Logo & Toggle */
 .app-header {
   display: flex;
   justify-content: space-between;
@@ -143,6 +143,7 @@ body {
 #new-todo-input::placeholder {
   color: var(--text-muted);
 }
+
 /* Custom Checkbox Design */
 .checkbox-container {
   display: flex;
@@ -350,4 +351,69 @@ body {
 }
 .mobile-only {
   display: none;
+}
+
+/* Drag Hint Footer */
+.drag-hint {
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 40px;
+  user-select: none;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Web Responsive Design */
+@media (max-width: 576px) {
+  .header-bg {
+    height: 200px;
+  }
+
+  .container {
+    padding: 48px 24px 30px;
+  }
+  .logo {
+    font-size: 1.8rem;
+    letter-spacing: 10px;
+  }
+  .input-section,
+  .todo-item {
+    padding: 16px 20px;
+    font-size: 15px;
+  }
+  #new-todo-input,
+  .todo-text {
+    font-size: 15px;
+    margin-left: 16px;
+  }
+  .checkbox-circle-static,
+  .checkbox-circle,
+  .todo-checkbox {
+    width: 20px;
+    height: 20px;
+  }
+  .checkbox-circle svg {
+    width: 9px;
+    height: 9px;
+  }
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: flex;
+  }
+  .todo-item .delete-btn {
+    opacity: 1; /* To keep it visible on touch screens */
+  }
 }
