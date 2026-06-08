@@ -277,11 +277,77 @@ body {
 .todo-item:hover .delete-btn {
   opacity: 1;
 }
-
 .delete-btn svg path {
   fill: var(--text-muted);
   transition: fill var(--transition-speed);
 }
 .delete-btn:hover svg path {
   fill: #db49ff; /* Purple highlight on hover for deleting */
+}
+
+/* List and Footer Controls */
+.list-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  font-size: 14px;
+  color: var(--text-muted);
+  background-color: var(--card-bg);
+  transition: background-color var(--transition-speed);
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color var(--transition-speed);
+}
+.action-btn:hover {
+  color: var(--text-hover);
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: 18px;
+}
+.filter-btn {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color var(--transition-speed);
+}
+.filter-btn:hover {
+  color: var(--text-hover);
+}
+.filter-btn.active {
+  color: var(--primary-blue);
+}
+
+/* Mobile Responsive Design */
+.mobile-filters-card {
+  background-color: var(--card-bg);
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+  transition:
+    background-color var(--transition-speed),
+    box-shadow var(--transition-speed);
+}
+.desktop-only {
+  display: flex;
+}
+.mobile-only {
+  display: none;
 }
