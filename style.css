@@ -85,7 +85,7 @@ body {
 }
 
 .logo {
-  color: #000000; /* Change to white for dark mode in JavaScript later */
+  color: #000000; /* Change to white for dark mode in JS later */
   font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: 15px;
