@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -21,16 +21,16 @@
         <header class="app-header">
             <h1 class="logo">TODO</h1>
             <button id="theme-toggle" aria-label="Toggle theme">
-                <!-- Sun Icon (shown in dark theme to switch to light) -->
-                <img src="images/icon-sun.svg" width="26" height="26" id="sun-icon">
+                <!-- Sun Icon (shown in dark theme to switch to light) --
+                <img src="images/icon-moon.svg" width="26" height="26" id="moon-icon">
 
                 <path fill="#FFF" fill-rule="evenodd"
                     d="M13 21a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1zm-5.657-2.343a1 1 0 0 1 0 1.414l-2.121 2.121a1 1 0 0 1-1.414-1.414l2.12-2.121a1 1 0 0 1 1.415 0zm12.728 0a1 1 0 0 1 1.414 0l2.121 2.121a1 1 0 0 1-1.414 1.414l-2.121-2.12a1 1 0 0 1 0-1.415zM13 8a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm12 4a1 1 0 1 1 0 2h-3a1 1 0 1 1 0-2h3zM4 12a1 1 0 1 1 0 2H1a1 1 0 1 1 0-2h3zm18.364-5.657a1 1 0 0 1 0 1.414l-2.12 2.121a1 1 0 0 1-1.415-1.414l2.121-2.121a1 1 0 0 1 1.414 0zM7.343 6.343a1 1 0 0 1 1.414 0l2.121 2.121a1 1 0 0 1-1.414 1.414l-2.121-2.12a1 1 0 0 1 0-1.415zM13 0a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0V1a1 1 0 0 1 1-1z" />
                 </svg>
-                <!-- Moon Icon (shown in light theme to switch to dark) -->
-                <img src="images/icon-moon.svg" width="26" height="26" id="moon-icon" class="hidden">
+                <!-- Moon Icon (shown in light theme to switch to dark) 
+                <img src="images/icon-sun.svg" width="26" height="26" id="sun-icon" class="hidden">
                 <!-- <path fill="#FFF" fill-rule="evenodd"
-                        d="M13 0c.81 0 1.603.074 2.373.216a1 1 0 0 1 .593 1.632 9.005 9.005 0 0 0 12.162 12.162 1 1 0 0 1 1.63 1.627A12.992 12.992 0 0 1 13 26a13 13 0 1 1 0-26z" /> -->
+                        d="M13 0c.81 0 1.603.074 2.373.216a1 1 0 0 1 .593 1.632 9.005 9.005 0 0 0 12.162 12.162 1 1 0 0 1 1.63 1.627A12.992 12.992 0 0 1 13 26a13 13 0 1 1 0-26z" /> --
                 </svg>
             </button>
         </header>
@@ -42,7 +42,7 @@
         </section>
         <section class="todo-card">
             <div id="todo-list" class="todo-list" role="list">
-                <!-- Todo items will be added here -->
+                <!-- Todo items will be added here --
             </div>
 
             <div class="list-footer">
@@ -55,7 +55,7 @@
                 <button id="clear-completed" class="action-btn">Clear Completed</button>
             </div>
         </section>
-        <!-- Mobile-only filters card -->
+        <!-- Mobile-only filters card --
         <section class="mobile-filters-card mobile-only">
             <div class="filters">
                 <button class="filter-btn active" data-filter="all">All</button>
@@ -66,6 +66,351 @@
         <p class="drag-hint">Drag and drop to reorder list</p>
     </main>
     <script src="app.js"></script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📝</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dark-theme">
+    <!-- CSS State  -->
+    <!-- Theme Toggle -->
+    <input type="checkbox" id="theme-checkbox" class="hidden-input">
+
+    <!-- Filters -->
+    <input type="radio" name="filter" id="filter-all" class="hidden-input" checked>
+    <input type="radio" name="filter" id="filter-active" class="hidden-input">
+    <input type="radio" name="filter" id="filter-completed" class="hidden-input">
+
+    <!-- Clear Completed -->
+    <input type="checkbox" id="clear-completed-checkbox" class="hidden-input">
+
+    <!-- Add-Todo Slot -->
+    <input type="checkbox" id="add-todo-7" class="hidden-input add-todo-checkbox">
+    <input type="checkbox" id="add-todo-8" class="hidden-input add-todo-checkbox">
+    <input type="checkbox" id="add-todo-9" class="hidden-input add-todo-checkbox">
+    <input type="checkbox" id="add-todo-10" class="hidden-input add-todo-checkbox">
+
+    <div class="header-bg" id="header-bg"></div>
+
+    <main class="container">
+        <header class="app-header">
+            <h1 class="logo">TODO</h1>
+            <label for="theme-checkbox" id="theme-toggle" aria-label="Toggle theme">
+                <!-- Moon Icon (shown in dark theme to switch to light) -->
+                <img src="images/icon-moon.svg" width="26" height="26" id="moon-icon" alt="Moon icon">
+
+                <!-- Sun Icon (shown in light theme to switch to dark) -->
+                <img src="images/icon-sun.svg" width="26" height="26" id="sun-icon" class="hidden" alt="Sun icon">
+            </label>
+        </header>
+
+        <div class="todo-app-wrapper">
+
+            <form action="#" class="new-todo-form">
+                <div class="todo-item todo-item-addable top-input-item">
+                    <div class="todo-item-content">
+                        <label class="checkbox-container" title="New todo">
+                            <span class="checkbox-circle-static"></span>
+                        </label>
+                        <input type="text" id="new-todo-input" name="new-todo" class="todo-item-input"
+                            placeholder="Create a new todo..." aria-label="Create a new todo">
+                        <button type="submit" class="submit-btn">Add</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="input-section-placeholder"></div>
+
+            <div class="todo-card">
+                <div id="todo-list" class="todo-list" role="list">
+
+                    <!-- Default Item 1 (Initially Completed) -->
+                    <div class="todo-item todo-item-1">
+                        <input type="checkbox" id="delete-todo-1" class="hidden-input delete-checkbox">
+                        <input type="checkbox" id="complete-todo-1" class="hidden-input todo-checkbox" checked>
+
+                        <div class="todo-item-content">
+                            <label class="checkbox-container" for="complete-todo-1">
+                                <span class="checkbox-circle">
+                                    <img src="images/icon-check.svg" width="11" height="9" alt="Check icon">
+                                </span>
+                            </label>
+                            <span class="todo-text">Complete online JavaScript course</span>
+                            <label class="delete-btn" for="delete-todo-1" aria-label="Delete item">
+                                <img src="images/icon-delete.svg" width="18" height="18" alt="Delete icon">
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Default Item 2 -->
+                    <div class="todo-item todo-item-2">
+                        <input type="checkbox" id="delete-todo-2" class="hidden-input delete-checkbox">
+                        <input type="checkbox" id="complete-todo-2" class="hidden-input todo-checkbox">
+
+                        <div class="todo-item-content">
+                            <label class="checkbox-container" for="complete-todo-2">
+                                <span class="checkbox-circle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
+                                        <path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6" />
+                                    </svg>
+                                </span>
+                            </label>
+                            <span class="todo-text">Jog around the park 3x</span>
+                            <label class="delete-btn" for="delete-todo-2" aria-label="Delete item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+                                    <path fill="#494C6B" fill-rule="evenodd"
+                                        d="M16.97 0l.708.707L10.414 8.05l7.264 7.263-.707.708-7.264-7.264-7.263 7.264-.708-.708 7.264-7.263L.707.707.1414 0l7.263 7.264L16.97 0z" />
+                                </svg>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Default Item 3 -->
+                    <div class="todo-item todo-item-3">
+                        <input type="checkbox" id="delete-todo-3" class="hidden-input delete-checkbox">
+                        <input type="checkbox" id="complete-todo-3" class="hidden-input todo-checkbox">
+
+                        <div class="todo-item-content">
+                            <label class="checkbox-container" for="complete-todo-3">
+                                <span class="checkbox-circle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
+                                        <path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6" />
+                                    </svg>
+                                </span>
+                            </label>
+                            <span class="todo-text">10 minutes meditation</span>
+                            <label class="delete-btn" for="delete-todo-3" aria-label="Delete item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+                                    <path fill="#494C6B" fill-rule="evenodd"
+                                        d="M16.97 0l.708.707L10.414 8.05l7.264 7.263-.707.708-7.264-7.264-7.263 7.264-.708-.708 7.264-7.263L.707.707.1414 0l7.263 7.264L16.97 0z" />
+                                </svg>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Default Item 4 -->
+                    <div class="todo-item todo-item-4">
+                        <input type="checkbox" id="delete-todo-4" class="hidden-input delete-checkbox">
+                        <input type="checkbox" id="complete-todo-4" class="hidden-input todo-checkbox">
+
+                        <div class="todo-item-content">
+                            <label class="checkbox-container" for="complete-todo-4">
+                                <span class="checkbox-circle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
+                                        <path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6" />
+                                    </svg>
+                                </span>
+                            </label>
+                            <span class="todo-text">Read for 1 hour</span>
+                            <label class="delete-btn" for="delete-todo-4" aria-label="Delete item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+                                    <path fill="#494C6B" fill-rule="evenodd"
+                                        d="M16.97 0l.708.707L10.414 8.05l7.264 7.263-.707.708-7.264-7.264-7.263 7.264-.708-.708 7.264-7.263L.707.707.1414 0l7.263 7.264L16.97 0z" />
+                                </svg>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Default Item 5 -->
+                    <div class="todo-item todo-item-5">
+                        <input type="checkbox" id="delete-todo-5" class="hidden-input delete-checkbox">
+                        <input type="checkbox" id="complete-todo-5" class="hidden-input todo-checkbox">
+
+                        <div class="todo-item-content">
+                            <label class="checkbox-container" for="complete-todo-5">
+                                <span class="checkbox-circle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
+                                        <path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6" />
+                                    </svg>
+                                </span>
+                            </label>
+                            <span class="todo-text">Pick up groceries</span>
+                            <label class="delete-btn" for="delete-todo-5" aria-label="Delete item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+                                    <path fill="#494C6B" fill-rule="evenodd"
+                                        d="M16.97 0l.708.707L10.414 8.05l7.264 7.263-.707.708-7.264-7.264-7.263 7.264-.708-.708 7.264-7.263L.707.707.1414 0l7.263 7.264L16.97 0z" />
+                                </svg>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Default Item 6 -->
+                    <div class="todo-item todo-item-6">
+                        <input type="checkbox" id="delete-todo-6" class="hidden-input delete-checkbox">
+                        <input type="checkbox" id="complete-todo-6" class="hidden-input todo-checkbox">
+
+                        <div class="todo-item-content">
+                            <label class="checkbox-container" for="complete-todo-6">
+                                <span class="checkbox-circle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
+                                        <path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6" />
+                                    </svg>
+                                </span>
+                            </label>
+                            <span class="todo-text">Complete Todo App on Frontend Mentor</span>
+                            <label class="delete-btn" for="delete-todo-6" aria-label="Delete item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+                                    <path fill="#494C6B" fill-rule="evenodd"
+                                        d="M16.97 0l.708.707L10.414 8.05l7.264 7.263-.707.708-7.264-7.264-7.263 7.264-.708-.708 7.264-7.263L.707.707.1414 0l7.263 7.264L16.97 0z" />
+                                </svg>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Addable Task Slot 7 -->
+                    <div class="todo-item todo-item-addable todo-item-7">
+                        <input type="checkbox" id="delete-todo-7" class="hidden-input delete-checkbox">
+                        <input type="checkbox" id="complete-todo-7" class="hidden-input todo-checkbox">
+
+                        <div class="todo-item-content">
+                            <!-- Label to ADD (checks add-todo-7 checkbox) -->
+                            <label class="checkbox-container add-trigger" for="add-todo-7" title="Add task to list">
+                                <span class="checkbox-circle-static"></span>
+                            </label>
+                            <!-- Label to COMPLETE (checks complete-todo-7 checkbox) -->
+                            <label class="checkbox-container complete-trigger" for="complete-todo-7">
+                                <span class="checkbox-circle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
+                                        <path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6" />
+                                    </svg>
+                                </span>
+                            </label>
+                            <input type="text" class="todo-item-input" placeholder="Create a new todo..."
+                                aria-label="Task text">
+                            <label class="delete-btn" for="delete-todo-7" aria-label="Delete item">
+                                <img src="images/icon-check.svg" width="18" height="18">
+                                <path fill="#494C6B" fill-rule="evenodd"
+                                    d="M16.97 0l.708.707L10.414 8.05l7.264 7.263-.707.708-7.264-7.264-7.263 7.264-.708-.708 7.264-7.263L.707.707.1414 0l7.263 7.264L16.97 0z" />
+                                </img>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Addable Task Slot 8 -->
+                    <div class="todo-item todo-item-addable todo-item-8">
+                        <input type="checkbox" id="delete-todo-8" class="hidden-input delete-checkbox">
+                        <input type="checkbox" id="complete-todo-8" class="hidden-input todo-checkbox">
+
+                        <div class="todo-item-content">
+                            <label class="checkbox-container add-trigger" for="add-todo-8" title="Add task to list">
+                                <span class="checkbox-circle-static"></span>
+                            </label>
+                            <label class="checkbox-container complete-trigger" for="complete-todo-8">
+                                <span class="checkbox-circle">
+                                    <img src="images/icon-check.svg" width="11" height="9">
+                                    <path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6" />
+                                    </img>
+                                </span>
+                            </label>
+                            <input type="text" class="todo-item-input" placeholder="Create a new todo..."
+                                aria-label="Task text">
+                            <label class="delete-btn" for="delete-todo-8" aria-label="Delete item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+                                    <path fill="#494C6B" fill-rule="evenodd"
+                                        d="M16.97 0l.708.707L10.414 8.05l7.264 7.263-.707.708-7.264-7.264-7.263 7.264-.708-.708 7.264-7.263L.707.707.1414 0l7.263 7.264L16.97 0z" />
+                                </svg>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Addable Task Slot 9 -->
+                    <div class="todo-item todo-item-addable todo-item-9">
+                        <input type="checkbox" id="delete-todo-9" class="hidden-input delete-checkbox">
+                        <input type="checkbox" id="complete-todo-9" class="hidden-input todo-checkbox">
+
+                        <div class="todo-item-content">
+                            <label class="checkbox-container add-trigger" for="add-todo-9" title="Add task to list">
+                                <span class="checkbox-circle-static"></span>
+                            </label>
+                            <label class="checkbox-container complete-trigger" for="complete-todo-9">
+                                <span class="checkbox-circle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
+                                        <path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6" />
+                                    </svg>
+                                </span>
+                            </label>
+                            <input type="text" class="todo-item-input" placeholder="Create a new todo..."
+                                aria-label="Task text">
+                            <label class="delete-btn" for="delete-todo-9" aria-label="Delete item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+                                    <path fill="#494C6B" fill-rule="evenodd"
+                                        d="M16.97 0l.708.707L10.414 8.05l7.264 7.263-.707.708-7.264-7.264-7.263 7.264-.708-.708 7.264-7.263L.707.707.1414 0l7.263 7.264L16.97 0z" />
+                                </svg>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Addable Task Slot 10 -->
+                    <div class="todo-item todo-item-addable todo-item-10">
+                        <input type="checkbox" id="delete-todo-10" class="hidden-input delete-checkbox">
+                        <input type="checkbox" id="complete-todo-10" class="hidden-input todo-checkbox">
+
+                        <div class="todo-item-content">
+                            <label class="checkbox-container add-trigger" for="add-todo-10" title="Add task to list">
+                                <span class="checkbox-circle-static"></span>
+                            </label>
+                            <label class="checkbox-container complete-trigger" for="complete-todo-10">
+                                <span class="checkbox-circle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
+                                        <path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6" />
+                                    </svg>
+                                </span>
+                            </label>
+                            <input type="text" class="todo-item-input" placeholder="Create a new todo..."
+                                aria-label="Task text">
+                            <label class="delete-btn" for="delete-todo-10" aria-label="Delete item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+                                    <path fill="#494C6B" fill-rule="evenodd"
+                                        d="M16.97 0l.708.707L10.414 8.05l7.264 7.263-.707.708-7.264-7.264-7.263 7.264-.708-.708 7.264-7.263L.707.707.1414 0l7.263 7.264L16.97 0z" />
+                                </svg>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="list-footer">
+                    <!-- Dynamically used for CSS Counter -->
+                    <span id="items-left">items left</span>
+
+                    <div class="filters desktop-only">
+                        <label for="filter-all" class="filter-btn-label filter-all-btn">All</label>
+                        <label for="filter-active" class="filter-btn-label filter-active-btn">Active</label>
+                        <label for="filter-completed" class="filter-btn-label filter-completed-btn">Completed</label>
+                    </div>
+
+                    <label for="clear-completed-checkbox" id="clear-completed" class="action-btn-label">Clear
+                        Completed</label>
+                </div>
+            </div>
+
+            <!-- Mobile-only filters card -->
+            <section class="mobile-filters-card mobile-only">
+                <div class="filters">
+                    <label for="filter-all" class="filter-btn-label filter-all-btn">All</label>
+                    <label for="filter-active" class="filter-btn-label filter-active-btn">Active</label>
+                    <label for="filter-completed" class="filter-btn-label filter-completed-btn">Completed</label>
+                </div>
+            </section>
+        </div>
+
+        <p class="drag-hint">Drag and drop to reorder list</p>
+    </main>
 </body>
 
 </html>
