@@ -23,7 +23,7 @@ body {
 }
 
 /* Default Dark Theme Theme */
-body {
+.dark-theme {
   --body-bg: #171823;
   --card-bg: #25273c;
   --text-main: #c8cae4;
@@ -34,13 +34,10 @@ body {
   --shadow: rgba(0, 0, 0, 0.4) 0px 35px 50px -15px;
   --bg-image-desktop: url("./images/bg-desktop-dark.jpg");
   --bg-image-mobile: url("./images/bg-mobile-dark.jpg");
-
-  background-color: var(--body-bg);
-  color: var(--text-main);
 }
 
-/* Light Theme triggered by checkbox icon*/
-body:has(#theme-checkbox:checked) {
+/* Light Theme */
+.light-theme {
   --body-bg: #fafafa;
   --card-bg: #ffffff;
   --text-main: #494c6b;
@@ -53,8 +50,9 @@ body:has(#theme-checkbox:checked) {
   --bg-image-mobile: url("./images/bg-mobile-light.jpg");
 }
 
-.hidden-input {
-  display: none !important;
+body {
+  background-color: var(--body-bg);
+  color: var(--text-main);
 }
 
 /* Background Header Image */
@@ -115,7 +113,7 @@ body:has(#theme-checkbox:checked) {
 
 /* Theme Icon switching based on checkbox */
 body:has(#theme-checkbox:checked) #sun-icon {
-  display: none !important; 
+  display: none !important;
 }
 body:has(#theme-checkbox:checked) #moon-icon {
   display: block !important;
@@ -150,9 +148,12 @@ body:not(:has(#theme-checkbox:checked)) #moon-icon {
   border-radius: 20px;
   background: transparent;
   color: var(--text-main);
-  font: inherit; 
+  font: inherit;
   cursor: pointer;
-  transition: background-color var(--transition-speed), border-color var(--transition-speed), color var(--transition-speed);
+  transition:
+    background-color var(--transition-speed),
+    border-color var(--transition-speed),
+    color var(--transition-speed);
 }
 
 .new-todo-form .submit-btn:hover,
@@ -263,7 +264,8 @@ body:not(:has(#theme-checkbox:checked)) #moon-icon {
   align-items: center;
   justify-content: center;
   transition:
-    border-color var(--transition-speed), -background var(--transition-speed);
+    border-color var(--transition-speed),
+    -background var(--transition-speed);
   position: relative;
 }
 
