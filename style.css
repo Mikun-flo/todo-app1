@@ -101,6 +101,9 @@ body {
   align-items: center;
   justify-content: center;
   transition: transform 0.2s ease;
+  background: none;
+  border: none;
+  outline: none;
 }
 
 #theme-toggle:hover {
@@ -185,8 +188,9 @@ body {
 /* Checkbox hover effect: Gradient border when not checked */
 .checkbox-container:hover .todo-checkbox:not(:checked) + .checkbox-circle {
   border-color: transparent;
-  background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
-              var(--check-gradient) border-box;
+  background:
+    linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+    var(--check-gradient) border-box;
   border: 1px solid transparent;
 }
 .todo-checkbox:checked + .checkbox-circle {
@@ -210,7 +214,9 @@ body {
   box-shadow: var(--shadow);
   overflow: hidden;
   margin-bottom: 24px;
-  transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+  transition:
+    background-color var(--transition-speed),
+    box-shadow var(--transition-speed);
 }
 .todo-list {
   display: flex;
@@ -223,7 +229,9 @@ body {
   border-radius: 0; /* Align perfectly in card */
   cursor: grab;
   position: relative;
-  transition: background-color var(--transition-speed), border-color var(--transition-speed);
+  transition:
+    background-color var(--transition-speed),
+    border-color var(--transition-speed);
   animation: fadeIn 0.3s ease-out;
 }
 .todo-item:active {
@@ -257,7 +265,9 @@ body {
   border: none;
   cursor: pointer;
   opacity: 0;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
   padding: 5px;
   display: flex;
   align-items: center;
@@ -330,7 +340,9 @@ body {
   justify-content: center;
   box-shadow: var(--shadow);
   margin-bottom: 24px;
-  transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+  transition:
+    background-color var(--transition-speed),
+    box-shadow var(--transition-speed);
 }
 /* Helper Visibility Classes */
 .desktop-only {
@@ -363,7 +375,7 @@ body {
   .header-bg {
     height: 200px;
   }
-  
+
   .container {
     padding: 48px 24px 30px;
   }
@@ -371,15 +383,19 @@ body {
     font-size: 1.8rem;
     letter-spacing: 10px;
   }
-  .input-section, .todo-item {
+  .input-section,
+  .todo-item {
     padding: 16px 20px;
     font-size: 15px;
   }
-   #new-todo-input, .todo-text {
+  #new-todo-input,
+  .todo-text {
     font-size: 15px;
     margin-left: 16px;
   }
-  .checkbox-circle-static, .checkbox-circle, .todo-checkbox {
+  .checkbox-circle-static,
+  .checkbox-circle,
+  .todo-checkbox {
     width: 20px;
     height: 20px;
   }
