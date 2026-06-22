@@ -13,40 +13,42 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<section class="input-section">
-    <div class="checkbox-container">
-        <div class="checkbox-circle-static"></div>
-    </div>
-    <input type="text" id="new-todo-input" placeholder="Create a new todo..." aria-label="Create a new todo">
-</section>
-<section class="todo-card">
-    <div id="todo-list" class="todo-list" role="list">
-        <!-- Dynamic todo items will be injected here -->
-    </div>
+<body>
+    <main>
+        <section class="input-section">
+            <div class="checkbox-container">
+                <div class="checkbox-circle-static"></div>
+            </div>
+            <input type="text" id="new-todo-input" placeholder="Create a new todo..." aria-label="Create a new todo">
+        </section>
+        <section class="todo-card">
+            <div id="todo-list" class="todo-list" role="list">
+                <!-- Dynamic todo items will be injected here -->
+            </div>
 
-    <div class="list-footer">
-        <span id="items-left">0 items left</span>
-        <div class="filters desktop-only">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="active">Active</button>
-            <button class="filter-btn" data-filter="completed">Completed</button>
-        </div>
-        <button id="clear-completed" class="action-btn">Clear Completed</button>
-    </div>
-</section>
+            <div class="list-footer">
+                <span id="items-left">0 items left</span>
+                <div class="filters desktop-only">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="active">Active</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                </div>
+                <button id="clear-completed" class="action-btn">Clear Completed</button>
+            </div>
+        </section>
 
-<!-- Mobile filters card -->
-<section class="mobile-filters-card mobile-only">
-    <div class="filters">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="active">Active</button>
-        <button class="filter-btn" data-filter="completed">Completed</button>
-    </div>
-</section>
-<p class="drag-hint">Drag and drop to reorder list</p>
-<p> Designed by Mikun</p>
-</main>
-<script src="app.js"></script>
+        <!-- Mobile filters card -->
+        <section class="mobile-filters-card mobile-only">
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="active">Active</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+            </div>
+        </section>
+        <p class="drag-hint">Drag and drop to reorder list</p>
+        <p> Designed by Mikun</p>
+    </main>
+    <script src="app.js"></script>
 </body>
 
 </html>
