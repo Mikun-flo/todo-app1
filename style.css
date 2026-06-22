@@ -216,3 +216,63 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+/* Todo Items */
+.todo-item {
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 0; /* Align perfectly in card */
+  cursor: grab;
+  position: relative;
+  transition: background-color var(--transition-speed), border-color var(--transition-speed);
+  animation: fadeIn 0.3s ease-out;
+}
+.todo-item:active {
+  cursor: grabbing;
+}
+.todo-item.dragging {
+  opacity: 0.4;
+  border: 2px dashed var(--primary-blue);
+  background-color: rgba(58, 124, 253, 0.05);
+}
+.todo-item.drag-over {
+  border-top: 2px solid var(--primary-blue);
+}
+.todo-text {
+  flex: 1;
+  margin-left: 24px;
+  font-size: 18px;
+  color: var(--text-main);
+  transition: color var(--transition-speed);
+  word-break: break-all;
+  user-select: none;
+}
+.todo-item.completed .todo-text {
+  color: var(--text-completed);
+  text-decoration: line-through;
+}
+
+/* Delete Button */
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.todo-item:hover .delete-btn {
+  opacity: 1;
+}
+.delete-btn:hover {
+  transform: scale(1.2);
+}
+.delete-btn svg path {
+  fill: var(--text-muted);
+  transition: fill var(--transition-speed);
+}
+.delete-btn:hover svg path {
+  fill: #970cb7; /* Purple highlight on hover for deleting */
+}
