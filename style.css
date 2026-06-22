@@ -115,7 +115,7 @@ body:has(#theme-checkbox:checked) {
 
 /* Theme Icon switching based on checkbox */
 body:has(#theme-checkbox:checked) #sun-icon {
-  display: none !important;
+  display: none !important; 
 }
 body:has(#theme-checkbox:checked) #moon-icon {
   display: block !important;
@@ -150,7 +150,7 @@ body:not(:has(#theme-checkbox:checked)) #moon-icon {
   border-radius: 20px;
   background: transparent;
   color: var(--text-main);
-  font: inherit;
+  font: inherit; 
   cursor: pointer;
   transition: background-color var(--transition-speed), border-color var(--transition-speed), color var(--transition-speed);
 }
@@ -354,7 +354,7 @@ body:not(:has(#theme-checkbox:checked)) #moon-icon {
   display: none !important;
 }
 
-/* Hover "+" sign inside add static circle */
+/* Check "+" sign inside and static circle */
 .add-trigger:hover .checkbox-circle-static::before {
   content: "+";
   color: var(--primary-blue);
