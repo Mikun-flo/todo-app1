@@ -43,3 +43,92 @@ function initTheme() {
     moonIcon.classList.add("hidden");
   }
 }
+function toggleTheme() {
+  if (document.body.classList.contains('dark-theme')) {
+    document.body.classList.remove('dark-theme');
+    document.body.classList.add('light-theme');
+    sunIcon.classList.add('hidden');
+    moonIcon.classList.remove('hidden');
+    localStorage.setItem('theme', 'light');
+  } else {
+    document.body.classList.remove('light-theme');
+    document.body.classList.add('dark-theme');
+    sunIcon.classList.remove('hidden');
+    moonIcon.classList.add('hidden');
+    localStorage.setItem('theme', 'dark');
+  }
+}
+// Data Sync Logic
+function loadTodos() {
+  const savedTodos = localStorage.getItem('todos');
+  if (savedTodos) {
+    todos = JSON.parse(savedTodos);
+  } else {
+    todos = [...DEFAULT_TODOS];
+    saveTodos();
+  }
+}
+function saveTodos() {
+  localStorage.setItem('todos', JSON.stringify(todos));
+}
+// Render UI logic
+function renderTodos() {
+  todoList.innerHTML = '';
+  
+  // Filtered array
+  const filteredTodos = todos.filter(todo => {
+    if (currentFilter === 'active') return !todo.completed;
+    if (currentFilter === 'completed') return todo.completed;
+    return true; // 'all'
+  });
+  filteredTodos.forEach((todo) => {
+    const todoEl = document.createElement('div');
+    todoEl.classList.add('todo-item');
+    if (todo.completed) todoEl.classList.add('completed');
+    
+    // Set up drag events attributes
+    todoEl.setAttribute('draggable', 'true');
+    todoEl.setAttribute('data-id', todo.id);
+    todoEl.innerHTML = `
+      <label class="checkbox-container">
+        <input type="checkbox" class="todo-checkbox" ${todo.completed ? 'checked' : ''}>
+        <span class="checkbox-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
+            <path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6"/>
+          </svg>
+        </span>
+      </label>
+      <span class="todo-text">${escapeHtml(todo.text)}</span>
+      <button class="delete-btn" aria-label="Delete todo item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+          <path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L10.414 8.05l7.264 7.263-.707.708-7.264-7.264-7.263 7.264-.708-.708 7.264-7.263L.707.707.1414 0l7.263 7.264L16.97 0z"/>
+        </svg>
+      </button>
+    `;
+    // Event listeners for checkbox toggle & delete
+    const checkbox = todoEl.querySelector('.todo-checkbox');
+    checkbox.addEventListener('change', () => toggleTodo(todo.id));
+    const deleteBtn = todoEl.querySelector('.delete-btn');
+    deleteBtn.addEventListener('click', () => deleteTodo(todo.id));
+    // Setup Drag & Drop listeners on each item
+    setupDragDropItem(todoEl);
+    todoList.appendChild(todoEl);
+  });
+  // Update item counts
+  const activeCount = todos.filter(todo => !todo.completed).length;
+  itemsLeftSpan.textContent = `${activeCount} item${activeCount !== 1 ? 's' : ''} left`;
+}
+// Event Listeners Setup
+function setupEventListeners() {
+  // Theme Toggle
+  themeToggleBtn.addEventListener('click', toggleTheme);
+  // New Todo Input
+  newTodoInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      const text = newTodoInput.value.trim();
+      if (text) {
+        addTodo(text);
+        newTodoInput.value = '';
+      }
+    }
+  });
