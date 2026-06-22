@@ -347,3 +347,53 @@ body {
   margin-top: 40px;
   user-select: none;
 }
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Responsive Media */
+@media (max-width: 576px) {
+  .header-bg {
+    height: 200px;
+  }
+  
+  .container {
+    padding: 48px 24px 30px;
+  }
+  .logo {
+    font-size: 1.8rem;
+    letter-spacing: 10px;
+  }
+  .input-section, .todo-item {
+    padding: 16px 20px;
+    font-size: 15px;
+  }
+   #new-todo-input, .todo-text {
+    font-size: 15px;
+    margin-left: 16px;
+  }
+  .checkbox-circle-static, .checkbox-circle, .todo-checkbox {
+    width: 20px;
+    height: 20px;
+  }
+  .checkbox-circle svg {
+    width: 9px;
+    height: 9px;
+  }
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: flex;
+  }
+  .todo-item .delete-btn {
+    opacity: 1; /* Keep it visible on touch screens */
+  }
+}
