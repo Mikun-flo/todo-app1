@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderTodos();
 });
 
-// Theme Logic
+// Theme 
 function initTheme() {
   const savedTheme = localStorage.getItem("theme") || "dark";
   if (savedTheme === "light") {
@@ -58,7 +58,7 @@ function toggleTheme() {
     localStorage.setItem('theme', 'dark');
   }
 }
-// Data Sync Logic
+// Data Sync 
 function loadTodos() {
   const savedTodos = localStorage.getItem('todos');
   if (savedTodos) {
@@ -93,9 +93,7 @@ function renderTodos() {
       <label class="checkbox-container">
         <input type="checkbox" class="todo-checkbox" ${todo.completed ? 'checked' : ''}>
         <span class="checkbox-circle">
-          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
-            <path fill="none" stroke="#FFF" stroke-width="2" d="M1 4.304L3.696 7l6-6"/>
-          </svg>
+          <img src="images/icon-check.svg" alt="Check Icon" id="Check-icon">
         </span>
       </label>
       <span class="todo-text">${escapeHtml(todo.text)}</span>
@@ -105,7 +103,7 @@ function renderTodos() {
         </svg>
       </button>
     `;
-    // Event listeners for checkbox toggle & delete
+    // Event listeners for checkbox toggle & delete button
     const checkbox = todoEl.querySelector('.todo-checkbox');
     checkbox.addEventListener('change', () => toggleTodo(todo.id));
     const deleteBtn = todoEl.querySelector('.delete-btn');
@@ -131,4 +129,22 @@ function setupEventListeners() {
         newTodoInput.value = '';
       }
     }
+  });
+  // Filters (Desktop + Mobile)
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const selectedFilter = e.target.getAttribute('data-filter');
+      
+      // Update filter state
+      currentFilter = selectedFilter;
+      // Update UI active state across both mobile and desktop buttons
+      filterBtns.forEach(b => {
+        if (b.getAttribute('data-filter') === selectedFilter) {
+          b.classList.add('active');
+        } else {
+          b.classList.remove('active');
+        }
+      });
+      renderTodos();
+    });
   });
