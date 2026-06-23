@@ -1,4 +1,4 @@
-// Initial state & default data matching the design mockup
+// Initial state & default data matching the design inspo
 const DEFAULT_TODOS = [
   { id: 1, text: "Complete online JavaScript course", completed: true },
   { id: 2, text: "Jog around the park 3x", completed: false },
@@ -86,7 +86,7 @@ function renderTodos() {
     todoEl.classList.add("todo-item");
     if (todo.completed) todoEl.classList.add("completed");
 
-    // Set up drag events attributes
+    // Set up drag events
     todoEl.setAttribute("draggable", "true");
     todoEl.setAttribute("data-id", todo.id);
     todoEl.innerHTML = `
@@ -151,6 +151,7 @@ function setupEventListeners() {
 
   // Clear Completed
   clearCompletedBtn.addEventListener("click", clearCompleted);
+
   // Drag and Drop dragover container logic
   todoList.addEventListener("dragover", (e) => {
     e.preventDefault();
@@ -182,4 +183,50 @@ function setupDragDropItem(item) {
     item.classList.remove("dragging");
     saveNewOrder();
   });
+}
+// Find placement node
+function getDragAfterElement(container, y) {
+  const draggableElements = [
+    ...container.querySelectorAll(".todo-item:not(.dragging)"),
+  ];
+
+  return draggableElements.reduce(
+    (closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return { offset: offset, element: child };
+      } else {
+        return closest;
+      }
+    },
+    { offset: Number.NEGATIVE_INFINITY },
+  ).element;
+}
+// Read current DOM positions and update todos array order
+function saveNewOrder() {
+  const renderedItems = [...todoList.querySelectorAll(".todo-item")];
+  const reorderedIds = renderedItems.map((item) =>
+    parseInt(item.getAttribute("data-id")),
+  );
+
+  const newTodos = [];
+
+  const sortedVisibleTodos = reorderedIds
+    .map((id) => todos.find((todo) => todo.id === id))
+    .filter(Boolean);
+
+  if (currentFilter === "all") {
+    todos = sortedVisibleTodos;
+  } else {
+    let visibleIndex = 0;
+    todos = todos.map((todo) => {
+      const isVisible = reorderedIds.includes(todo.id);
+      if (isVisible) {
+        return sortedVisibleTodos[visibleIndex++];
+      }
+      return todo;
+    });
+  }
+  saveTodos();
 }
