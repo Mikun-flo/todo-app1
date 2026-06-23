@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderTodos();
 });
 
-// Theme 
+// Theme
 function initTheme() {
   const savedTheme = localStorage.getItem("theme") || "dark";
   if (savedTheme === "light") {
@@ -44,23 +44,23 @@ function initTheme() {
   }
 }
 function toggleTheme() {
-  if (document.body.classList.contains('dark-theme')) {
-    document.body.classList.remove('dark-theme');
-    document.body.classList.add('light-theme');
-    sunIcon.classList.add('hidden');
-    moonIcon.classList.remove('hidden');
-    localStorage.setItem('theme', 'light');
+  if (document.body.classList.contains("dark-theme")) {
+    document.body.classList.remove("dark-theme");
+    document.body.classList.add("light-theme");
+    sunIcon.classList.add("hidden");
+    moonIcon.classList.remove("hidden");
+    localStorage.setItem("theme", "light");
   } else {
-    document.body.classList.remove('light-theme');
-    document.body.classList.add('dark-theme');
-    sunIcon.classList.remove('hidden');
-    moonIcon.classList.add('hidden');
-    localStorage.setItem('theme', 'dark');
+    document.body.classList.remove("light-theme");
+    document.body.classList.add("dark-theme");
+    sunIcon.classList.remove("hidden");
+    moonIcon.classList.add("hidden");
+    localStorage.setItem("theme", "dark");
   }
 }
-// Data Sync 
+// Data Sync
 function loadTodos() {
-  const savedTodos = localStorage.getItem('todos');
+  const savedTodos = localStorage.getItem("todos");
   if (savedTodos) {
     todos = JSON.parse(savedTodos);
   } else {
@@ -69,29 +69,29 @@ function loadTodos() {
   }
 }
 function saveTodos() {
-  localStorage.setItem('todos', JSON.stringify(todos));
+  localStorage.setItem("todos", JSON.stringify(todos));
 }
 // Render UI logic
 function renderTodos() {
-  todoList.innerHTML = '';
-  
+  todoList.innerHTML = "";
+
   // Filtered array
-  const filteredTodos = todos.filter(todo => {
-    if (currentFilter === 'active') return !todo.completed;
-    if (currentFilter === 'completed') return todo.completed;
+  const filteredTodos = todos.filter((todo) => {
+    if (currentFilter === "active") return !todo.completed;
+    if (currentFilter === "completed") return todo.completed;
     return true; // 'all'
   });
   filteredTodos.forEach((todo) => {
-    const todoEl = document.createElement('div');
-    todoEl.classList.add('todo-item');
-    if (todo.completed) todoEl.classList.add('completed');
-    
+    const todoEl = document.createElement("div");
+    todoEl.classList.add("todo-item");
+    if (todo.completed) todoEl.classList.add("completed");
+
     // Set up drag events attributes
-    todoEl.setAttribute('draggable', 'true');
-    todoEl.setAttribute('data-id', todo.id);
+    todoEl.setAttribute("draggable", "true");
+    todoEl.setAttribute("data-id", todo.id);
     todoEl.innerHTML = `
       <label class="checkbox-container">
-        <input type="checkbox" class="todo-checkbox" ${todo.completed ? 'checked' : ''}>
+        <input type="checkbox" class="todo-checkbox" ${todo.completed ? "checked" : ""}>
         <span class="checkbox-circle">
           <img src="images/icon-check.svg" alt="Check Icon" id="Check-icon">
         </span>
@@ -104,47 +104,82 @@ function renderTodos() {
       </button>
     `;
     // Event listeners for checkbox toggle & delete button
-    const checkbox = todoEl.querySelector('.todo-checkbox');
-    checkbox.addEventListener('change', () => toggleTodo(todo.id));
-    const deleteBtn = todoEl.querySelector('.delete-btn');
-    deleteBtn.addEventListener('click', () => deleteTodo(todo.id));
+    const checkbox = todoEl.querySelector(".todo-checkbox");
+    checkbox.addEventListener("change", () => toggleTodo(todo.id));
+    const deleteBtn = todoEl.querySelector(".delete-btn");
+    deleteBtn.addEventListener("click", () => deleteTodo(todo.id));
     // Setup Drag & Drop listeners on each item
     setupDragDropItem(todoEl);
     todoList.appendChild(todoEl);
   });
   // Update item counts
-  const activeCount = todos.filter(todo => !todo.completed).length;
-  itemsLeftSpan.textContent = `${activeCount} item${activeCount !== 1 ? 's' : ''} left`;
+  const activeCount = todos.filter((todo) => !todo.completed).length;
+  itemsLeftSpan.textContent = `${activeCount} item${activeCount !== 1 ? "s" : ""} left`;
 }
 // Event Listeners Setup
 function setupEventListeners() {
   // Theme Toggle
-  themeToggleBtn.addEventListener('click', toggleTheme);
+  themeToggleBtn.addEventListener("click", toggleTheme);
   // New Todo Input
-  newTodoInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
+  newTodoInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
       const text = newTodoInput.value.trim();
       if (text) {
         addTodo(text);
-        newTodoInput.value = '';
+        newTodoInput.value = "";
       }
     }
   });
   // Filters (Desktop + Mobile)
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const selectedFilter = e.target.getAttribute('data-filter');
-      
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const selectedFilter = e.target.getAttribute("data-filter");
+
       // Update filter state
       currentFilter = selectedFilter;
       // Update UI active state across both mobile and desktop buttons
-      filterBtns.forEach(b => {
-        if (b.getAttribute('data-filter') === selectedFilter) {
-          b.classList.add('active');
+      filterBtns.forEach((b) => {
+        if (b.getAttribute("data-filter") === selectedFilter) {
+          b.classList.add("active");
         } else {
-          b.classList.remove('active');
+          b.classList.remove("active");
         }
       });
       renderTodos();
     });
   });
+
+  // Clear Completed
+  clearCompletedBtn.addEventListener("click", clearCompleted);
+  // Drag and Drop dragover container logic
+  todoList.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    const draggingEl = document.querySelector(".dragging");
+    if (!draggingEl) return;
+
+    const afterElement = getDragAfterElement(todoList, e.clientY);
+    if (afterElement == null) {
+      todoList.appendChild(draggingEl);
+    } else {
+      todoList.insertBefore(draggingEl, afterElement);
+    }
+  });
+  todoList.addEventListener("drop", (e) => {
+    e.preventDefault();
+    saveNewOrder();
+  });
+}
+
+// Drag & Drop Item Listeners
+function setupDragDropItem(item) {
+  item.addEventListener("dragstart", () => {
+    // Timeout keeps the captured drag ghost image opaque
+    setTimeout(() => {
+      item.classList.add("dragging");
+    }, 0);
+  });
+  item.addEventListener("dragend", () => {
+    item.classList.remove("dragging");
+    saveNewOrder();
+  });
+}
