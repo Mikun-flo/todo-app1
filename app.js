@@ -93,7 +93,7 @@ function renderTodos() {
       <label class="checkbox-container">
         <input type="checkbox" class="todo-checkbox" ${todo.completed ? "checked" : ""}>
         <span class="checkbox-circle">
-          <img src="images/icon-check.svg" alt="Check Icon" id="Check-icon">
+          ${todo.completed ? '<img src="images/icon-check.svg" alt="Check Icon" class="check-icon">' : ''}
         </span>
       </label>
       <span class="todo-text">${escapeHtml(todo.text)}</span>
@@ -229,4 +229,44 @@ function saveNewOrder() {
     });
   }
   saveTodos();
+}
+
+function addTodo(text) {
+  const newTodo = {
+    id: Date.now(),
+    text: text,
+    completed: false,
+  };
+  todos.push(newTodo);
+  saveTodos();
+  renderTodos();
+}
+// Delete actions
+function deleteTodo(id) {
+  todos = todos.filter((todo) => todo.id !== id);
+  saveTodos();
+  renderTodos();
+}
+// Toggle actions
+function toggleTodo(id) {
+  todos = todos.map((todo) => {
+    if (todo.id === id) {
+      return { ...todo, completed: !todo.completed };
+    }
+    return todo;
+  });
+  saveTodos();
+  renderTodos();
+}
+// Clear actions
+function clearCompleted() {
+  todos = todos.filter((todo) => !todo.completed);
+  saveTodos();
+  renderTodos();
+}
+// Utility for HTML escaping
+function escapeHtml(str) {
+  const div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
 }
