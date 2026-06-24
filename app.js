@@ -93,7 +93,7 @@ function renderTodos() {
       <label class="checkbox-container">
         <input type="checkbox" class="todo-checkbox" ${todo.completed ? "checked" : ""}>
         <span class="checkbox-circle">
-          ${todo.completed ? '<img src="images/icon-check.svg" alt="Check Icon" class="check-icon">' : ''}
+          ${todo.completed ? '<img src="images/icon-check.svg" alt="Check Icon" class="check-icon">' : ""}
         </span>
       </label>
       <span class="todo-text">${escapeHtml(todo.text)}</span>
